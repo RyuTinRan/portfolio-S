@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Randy Andrei Nagera - Portfolio</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8ff;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background-color: #121212;
+      color: #ddd;
+    }
+    body.dark-mode main section h2,
+    body.dark-mode main section p,
+    body.dark-mode main section ul li {
+      color: black;
+    }
+    header {
+      background-color: #4b8c4a;
+      color: white;
+      padding: 3rem;
+      text-align: center;
+      border-bottom: 5px solid #e6e6e6;
+    }
+    header img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      margin-bottom: 1rem;
+      border: 3px solid #fff;
+      cursor: pointer;
+    }
+    header h1 {
+      margin: 0.5rem 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.3rem;
+    }
+    #dark-mode-toggle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem auto;
+    }
+    #dark-mode-toggle label {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+      color: white;
+    }
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    section h2 {
+      border-bottom: 3px solid #4b8c4a;
+      padding-bottom: 0.5rem;
+      color: #4b8c4a;
+      font-size: 2rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin: 0.5rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+    ul li::before {
+      content: "•";
+      color: #4b8c4a;
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: -2px;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #333;
+      color: white;
+      margin-top: 3rem;
+    }
+    .contact {
+      color: #4b8c4a;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div id="drop-zone" ondragover="allowDrag(event)" ondrop="handleDrop(event)">
+      <img id="profile-pic" src="Profile.jpg" alt="Randy Andrei Nagera">
+    </div>
+    <h1>Randy Andrei S. Nagera</h1>
+    <p>Second-Year BSIT Student | Aspiring IT Professional | Tech Enthusiast</p>
+    <div id="dark-mode-toggle">
+      <input type="checkbox" id="dark-mode-switch" onchange="toggleDarkMode()">
+      <label for="dark-mode-switch">Dark Mode</label>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>About Me</h2>
+      <p>
+        Hello! My name is Randy, a 21-year-old student pursuing a Bachelor of Science in Information Technology. 
+        I started my college journey in History, but after realizing it wasn't my passion, I decided to switch to IT. 
+        It was a challenging but rewarding decision. Now, I am eager to further explore the world of technology and grow as a future IT professional. 
+        In my free time, I enjoy gaming, playing basketball, and hitting the gym to stay fit.
+      </p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <ul>
+        <li>Hardware troubleshooting and repair</li>
+        <li>Programming: Python, Java, HTML & CSS, JavaScript</li>
+        <li>Web development</li>
+        <li>Problem-solving and critical thinking</li>
+        <li>Collaborative teamwork and communication</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Achievements</h2>
+      <ul>
+        <li>Fixed a computer system hardware in a school showcase for freshmen</li>
+        <li>Developed a website about JJ's Burger using HTML, CSS, and JavaScript</li>
+        <li>Attended BITSCON 2024: "Digital Horizons: Navigating the Future of Technology"</li>
+        <li>Currently developing a website project: "Sea Cup Cafe & Souvenirs Shop" using HTML, CSS, and JavaScript</li>
+        <li>Participated in college tech workshops to enhance coding skills</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p class="contact">Connect with me: <strong>randynagera0@gmail.com</strong></p>
+    <p>&copy; 2024 Randy Andrei S. Nagera | <span id="date"></span></p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function allowDrag(event) {
+      event.preventDefault();
+    }
+
+    function handleDrop(event) {
+      event.preventDefault();
+      const file = event.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('profile-pic').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Please drop an image file.');
+      }
+    }
+
+    function displayCurrentDate() {
+      const dateElement = document.getElementById('date');
+      const currentDate = new Date();
+      dateElement.textContent = currentDate.toDateString();
+    }
+
+    // Initialize the footer date on page load
+    window.onload = displayCurrentDate;
+  </script>
+</body>
+</html>
